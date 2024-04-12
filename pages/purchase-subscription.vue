@@ -5,6 +5,9 @@
                 <div class="heading-2">Купить абонемент</div>
             </div>
             <div class="card-list">
+                <SubscriptionCards />
+                <SubscriptionCards />
+                <SubscriptionCards />
             </div>
         </div>
     </div>

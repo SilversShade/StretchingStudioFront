@@ -33,29 +33,4 @@ defineProps({
 });
 </script>
 
-<style scoped src="../assets/css/globals.css">
-.chips-list {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 20px;
-}
-
-.chips {
-    padding: 8px 20px;
-    border-radius: 50px;
-    font-size: 20px;
-    line-height: 120%;
-    cursor: pointer;
-}
-
-.chips-active {
-    color: #fff;
-    background-color: #CF48FF;
-    font-weight: 600;
-}
-
-.chips-inactive {
-    color: #000;
-    background-color: #F2F2F2;
-}
-</style>
+<style scoped src="../assets/css/globals.css"></style>
