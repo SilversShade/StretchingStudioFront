@@ -6,7 +6,7 @@
                     <div class="logo-sign"></div>
                     <div class="logo-text"><nuxt-link to="/">Stretching Studio</nuxt-link></div>
                 </div>
-                <button class="enter-button"><a href="../register/index.html">Зарегистрироваться</a></button>
+                <button class="enter-button"><nuxt-link to="/auth/login">Войти</nuxt-link></button>
             </div>
 
             <div>

@@ -4,6 +4,6 @@
 
 <script setup>
     definePageMeta({
-        layout: 'login'
+        layout: 'register'
     })
 </script>
