@@ -1,30 +1,39 @@
 <template>
-    <body>
-        <div class="screen">
-            <div class="container">
-                <div class="navigation">
-                    <div class="navigation-left-side">
-                        <div class="logo">
-                            <div class="logo-sign"></div>
-                            <div class="logo-text"><a href=".">Stretching Studio</a></div>
-                        </div>
-                        <div class="navigation-list">
-                            <div class="list-active">Главная</div>
-                            <div class="list-inactive"> <a href="./purchase-subscription/index.html">Купить
-                                    абонемент</a>
-                            </div>
-                            <div class="list-inactive"> <a href="./session-sign-up/index.html">Записаться на занятие</a>
-                            </div>
-                        </div>
+    <div class="screen">
+        <div class="container">
+            <div class="navigation">
+                <div class="navigation-left-side">
+                    <div class="logo">
+                        <div class="logo-sign"></div>
+                        <div class="logo-text"><nuxt-link to="/">Stretching Studio</nuxt-link></div>
                     </div>
-                    <button class="enter-button button-on-white"><a href="./login/index.html">Вход</a></button>
+                    <div class="navigation-list">
+                        <div class="list-navbar"> <navbar-link to="/">Главная</navbar-link></div>
+                        <div class="list-navbar"> <navbar-link to="/purchase-subscription">Купить абонемент</navbar-link></div>
+                        <div class="list-navbar"> <navbar-link to="/session-sign-up">Записаться на занятие</navbar-link></div>
+                    </div>
                 </div>
+                <button class="enter-button button-on-white"><nuxt-link to="/auth/login">Вход</nuxt-link></button>
             </div>
+
+            <div>
+                <slot />
+            </div>
+
         </div>
-    </body>
+    </div>
 </template>
 
-<style scoped src="../assets/globals.css">
+<script setup lang="ts">
+defineProps({
+    to: {
+        type: String,
+        required: true,
+    }
+});
+</script>
+
+<style scoped src="../assets/css/globals.css">
 .chips-list {
     display: flex;
     gap: 12px;
