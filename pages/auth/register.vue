@@ -6,18 +6,14 @@
                 <div class="inputs">
                     <form @submit.prevent="submitForm">
                         <div class="input-wrapper">
-                            <label for="email" class="input-label">Email</label>
                             <input type="email" v-model="formData.email" id="email" class="input-value"
                                 placeholder="Email" />
                         </div>
                         <div class="input-wrapper">
-                            <label for="password" class="input-label">Password</label>
-
                             <input type="password" v-model="formData.password" id="password" class="input-value"
                                 placeholder="Пароль" />
                         </div>
                         <div class="input-wrapper">
-                            <label for="confirm-password" class="input-label">Password confirmation</label>
                             <input type="password" v-model="formData.confirmPassword" id="confirm-password"
                                 class="input-value" placeholder="Подтвердите пароль" />
                         </div>
@@ -43,8 +39,10 @@ const formData = ref({
     confirmPassword: '',
 })
 
+const { $csrfFetch } = useNuxtApp()
+
 const submitForm = async () => {
-    const data = await $fetch('https://localhost:7229/register', {
+    const data = await $fetch('https://localhost:7229/register', { // TODO: protect against csrf
         method: 'post',
         body: {
             "email": formData.value.email,
