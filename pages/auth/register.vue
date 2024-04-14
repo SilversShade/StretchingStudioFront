@@ -42,7 +42,8 @@ const formData = ref({
 const { $csrfFetch } = useNuxtApp()
 
 const submitForm = async () => {
-    const data = await $fetch('https://localhost:7229/register', { // TODO: protect against csrf
+    const config = useRuntimeConfig()
+    const data = await $fetch(config.public.apiBase + '/register', {
         method: 'post',
         body: {
             "email": formData.value.email,

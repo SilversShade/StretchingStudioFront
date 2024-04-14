@@ -19,7 +19,8 @@
         price: number
     }
 
-    const { data: subscriptions } = await useFetch<Subscription[]>('https://localhost:7229/api/v1/available-subscriptions')
+    const config = useRuntimeConfig()
+    const { data: subscriptions } = await useFetch<Subscription[]>(config.public.apiBase + '/api/v1/available-subscriptions')
 </script>
 
 <style scoped src="../assets/css/globals.css"></style>
