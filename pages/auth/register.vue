@@ -14,44 +14,58 @@
                                 placeholder="Пароль" />
                         </div>
                         <div class="input-wrapper">
-                            <input type="password" v-model="formData.confirmPassword" id="confirm-password"
-                                class="input-value" placeholder="Подтвердите пароль" />
+                            <input type="password" id="confirm-password" class="input-value"
+                                placeholder="Подтвердите пароль" />
                         </div>
-
                         <button type="submit" class="cta-button">Зарегистрироваться</button>
                     </form>
+                    <p v-if="error !== undefined" class="font-bold text-rose-500"> {{ error }}</p>
                 </div>
             </div>
         </div>
     </div>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue'
+<script lang="ts">
+const formData = ref({
+    email: "",
+    password: ""
+})
 
+export default {
+    data() {
+        return {
+            error: ""
+        }
+    },
+    methods: {
+        async submitForm() {
+            const config = useRuntimeConfig()
+
+            await $fetch(config.public.apiBase + '/register', {
+                method: 'post',
+                body: {
+                    "email": formData.value.email,
+                    "password": formData.value.password
+                }
+            })
+            .then(async _ => await navigateTo({ path: '/auth/login'}))
+            .catch(err => {
+                const errors = err.response._data.errors
+                if (errors.DuplicateUserName)
+                    this.error = "Пользователь с данным email уже зарегистрирован"
+                else
+                    this.error = "Ошибка. Проверьте введенные данные"
+            }) 
+        }
+    }
+}
+</script>
+
+<script setup lang="ts">
 definePageMeta({
     layout: 'register'
 })
-
-const formData = ref({
-    email: '',
-    password: '',
-    confirmPassword: '',
-})
-
-const { $csrfFetch } = useNuxtApp()
-
-const submitForm = async () => {
-    const config = useRuntimeConfig()
-    const data = await $fetch(config.public.apiBase + '/register', {
-        method: 'post',
-        body: {
-            "email": formData.value.email,
-            "password": formData.value.password
-        }
-    })
-}
-
 </script>
 
 <style scoped src="/assets/css/globals.css"></style>

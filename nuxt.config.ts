@@ -11,6 +11,14 @@ export default defineNuxtConfig({
     }
   },
 
+  $production: {
+    runtimeConfig: {
+      public: {
+        apiBase: '' // add api base for production
+      }
+    }
+  },
+
   postcss: {
     plugins: {
       tailwindcss: {},
