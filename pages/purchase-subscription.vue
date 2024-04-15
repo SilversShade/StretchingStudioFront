@@ -20,7 +20,7 @@ interface Subscription {
 }
 
 const config = useRuntimeConfig()
-const { data: subscriptions } = useFetch<Subscription[]>(config.public.apiBase + '/api/v1/available-subscriptions', {
+const { data: subscriptions } = await useFetch<Subscription[]>(config.public.apiBase + '/api/v1/available-subscriptions', {
     server: false,
     transform: (subscriptions) => {
         return subscriptions.map(product => ({
