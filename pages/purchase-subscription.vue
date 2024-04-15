@@ -14,13 +14,21 @@
 </template>
 
 <script setup lang="ts">
-    interface Subscription {
-        sessionsNum: number,
-        price: number
-    }
+interface Subscription {
+    sessionsNum: number,
+    price: number
+}
 
-    const config = useRuntimeConfig()
-    const { data: subscriptions } = await useFetch<Subscription[]>(config.public.apiBase + '/api/v1/available-subscriptions')
+const config = useRuntimeConfig()
+const { data: subscriptions } = useFetch<Subscription[]>(config.public.apiBase + '/api/v1/available-subscriptions', {
+    server: false,
+    transform: (subscriptions) => {
+        return subscriptions.map(product => ({
+            sessionsNum: product.sessionsNum,
+            price: product.price
+        }))
+    }
+})
 </script>
 
 <style scoped src="../assets/css/globals.css"></style>
