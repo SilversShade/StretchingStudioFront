@@ -19,7 +19,7 @@
                         </div>
                         <button type="submit" class="cta-button">Зарегистрироваться</button>
                     </form>
-                    <p v-if="error !== undefined" class="font-bold text-rose-500"> {{ error }}</p>
+                    <p v-if="error" class="font-bold text-rose-500"> {{ error }}</p>
                 </div>
             </div>
         </div>
@@ -48,15 +48,15 @@ export default {
                     "email": formData.value.email,
                     "password": formData.value.password
                 }
-            })
-            .then(async _ => await navigateTo({ path: '/auth/login'}))
-            .catch(err => {
-                const errors = err.response._data.errors
-                if (errors.DuplicateUserName)
-                    this.error = "Пользователь с данным email уже зарегистрирован"
-                else
-                    this.error = "Ошибка. Проверьте введенные данные"
-            }) 
+                })
+                .then(async _ => await navigateTo({ path: '/auth/login' }))
+                .catch(err => {
+                    const errors = err.response._data.errors
+                    if (errors.DuplicateUserName)
+                        this.error = "Пользователь с данным email уже зарегистрирован"
+                    else
+                        this.error = "Ошибка. Проверьте введенные данные"
+                })
         }
     }
 }

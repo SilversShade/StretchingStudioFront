@@ -13,7 +13,8 @@
                         <div class="list-navbar"> <navbar-link to="/session-sign-up">Записаться на занятие</navbar-link></div>
                     </div>
                 </div>
-                <button class="enter-button button-on-white"><nuxt-link to="/auth/login">Вход</nuxt-link></button>
+                <button class="enter-button button-on-white"><nuxt-link to="/auth/login">Вход</nuxt-link></button> <!--v-if="authStore.user"-->
+                <!--v-else, <button class="enter-button button-on-white"><nuxt-link to="/account">Мой аккаунт</nuxt-link></button>-->
             </div>
 
             <div>
@@ -23,14 +24,5 @@
         </div>
     </div>
 </template>
-
-<script setup lang="ts">
-defineProps({
-    to: {
-        type: String,
-        required: true,
-    }
-});
-</script>
 
 <style scoped src="../assets/css/globals.css"></style>

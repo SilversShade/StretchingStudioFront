@@ -8,7 +8,6 @@
                 </div>
                 <button class="enter-button"><nuxt-link to="/auth/register">Зарегистрироваться</nuxt-link></button>
             </div>
-
             <div>
                 <slot />
             </div>
