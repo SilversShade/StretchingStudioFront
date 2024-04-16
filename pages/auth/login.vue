@@ -28,6 +28,11 @@ const formData = ref({
     password: "",
 })
 
+interface LoginResponse {
+    accessToken: string,
+    expiresIn: number,
+}
+
 export default {
     data() {
         return {
@@ -38,20 +43,22 @@ export default {
         async submitForm() {
             const config = useRuntimeConfig()
 
-            await $fetch(config.public.apiBase + '/login', {
+            await $fetch<LoginResponse>(config.public.apiBase + '/login', {
                 method: 'post',
                 body: {
                     "email": formData.value.email,
                     "password": formData.value.password
                 }
                 })
-                .then(async res => { // это все поместить в хранилище???
-                    // this.accessToken = res.accessToken
-                    // this.refreshToken = res.refreshToken
-                    // this.expiresIn = res.expiresIn
+                .then(async res => {
+                    // также добавить isLoggedIn = true в хранилку (pinia)
+                    useCookie('accessToken', {
+                        maxAge: res.expiresIn,
+                    }).value = res.accessToken
+
                     await navigateTo({ path: '/account' })
                 })
-                .catch(err => {
+                .catch(_ => {
                     this.error = "Произошла ошибка. Убедитесь в корректности введенных данных."
                 })
         }

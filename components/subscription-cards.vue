@@ -5,15 +5,20 @@
             <div class="card-label">Стоимость</div>
             <div class="card-value">{{ $props.price }} ₽</div>
         </div>
-        <button class="card-button"><nuxt-link to="/payment">Купить</nuxt-link></button>
+        <button class="card-button" @click="purchase"><nuxt-link to="/account">Купить</nuxt-link></button>
     </div>
 </template>
 
 <script setup>
 const props = defineProps({
+    id: String,
     sessionsNum: Number,
     price: Number
 })
+
+const purchase = async () => {
+    // подключить pinia, взять куки, с ними отправить запрос на бек
+}
 </script>
 
 <style scoped src="../assets/css/globals.css"></style>

@@ -6,7 +6,7 @@
             </div>
             <div class="grid grid-cols-3 gap-5">
                 <div v-for="s in subscriptions">
-                    <SubscriptionCards :sessions-num="s.sessionsNum" :price="s.price" />
+                    <SubscriptionCards :id="s.id" :sessions-num="s.sessionsNum" :price="s.price" />
                 </div>
             </div>
         </div>
@@ -15,6 +15,7 @@
 
 <script setup lang="ts">
 interface Subscription {
+    id: string,
     sessionsNum: number,
     price: number
 }
@@ -22,12 +23,6 @@ interface Subscription {
 const config = useRuntimeConfig()
 const { data: subscriptions } = await useFetch<Subscription[]>(config.public.apiBase + '/api/v1/available-subscriptions', {
     server: false,
-    transform: (subscriptions) => {
-        return subscriptions.map(product => ({
-            sessionsNum: product.sessionsNum,
-            price: product.price
-        }))
-    }
 })
 </script>
 
