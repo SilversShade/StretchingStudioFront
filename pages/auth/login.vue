@@ -68,7 +68,8 @@ export default {
 
 <script setup lang="ts">
 definePageMeta({
-    layout: 'login'
+    layout: 'login',
+    middleware: 'auth'
 })
 </script>
 
