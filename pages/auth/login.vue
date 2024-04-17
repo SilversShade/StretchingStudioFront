@@ -51,10 +51,13 @@ export default {
                 }
                 })
                 .then(async res => {
-                    // также добавить isLoggedIn = true в хранилку (pinia)
                     useCookie('accessToken', {
                         maxAge: res.expiresIn,
                     }).value = res.accessToken
+                    
+                    const authStore = useAuthStore()
+                    authStore.isLoggedIn = true
+                    authStore.username = formData.value.email
 
                     await navigateTo({ path: '/account' })
                 })
@@ -67,6 +70,8 @@ export default {
 </script>
 
 <script setup lang="ts">
+import { useAuthStore } from '~/stores/auth';
+
 definePageMeta({
     layout: 'login',
     middleware: 'auth'
