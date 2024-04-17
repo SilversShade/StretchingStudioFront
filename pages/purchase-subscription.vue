@@ -9,6 +9,7 @@
                     <SubscriptionCards :id="s.id" :sessions-num="s.sessionsNum" :price="s.price" />
                 </div>
             </div>
+
         </div>
     </div>
 </template>

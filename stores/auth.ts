@@ -6,5 +6,6 @@ export const useAuthStore = defineStore('auth', {
             isLoggedIn: false,
             username: ""
         }
-    }
+    },
+    persist: true
 })
