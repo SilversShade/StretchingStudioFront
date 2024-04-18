@@ -1,15 +1,15 @@
 <template>
     <div class="card">
-        <div class="card-title">Количество занятий: {{ $props.sessionsNum }}</div>
+        <div class="card-title">Количество занятий: {{ props.sessionsNum }}</div>
         <div class="card-content">
             <div class="card-label">Стоимость</div>
-            <div class="card-value">{{ $props.price }} ₽</div>
+            <div class="card-value">{{ props.price }} ₽</div>
         </div>
         <button class="card-button" @click="purchase"><nuxt-link to="/account">Купить</nuxt-link></button>
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
     id: String,
     sessionsNum: Number,
@@ -17,6 +17,26 @@ const props = defineProps({
 })
 
 const purchase = async () => {
+    const config = useRuntimeConfig()
+
+    await $fetch<string>(config.public.apiBase + '/api/v1/purchase-subscription', {
+        method: 'post',
+        headers: {
+            "Authorization": "Bearer " + useCookie('accessToken').value
+        },
+        body: {
+            "subscriptionId": props.id
+        }
+        })
+        .then(async _ => {
+            await navigateTo({ path: '/account' })
+        })
+        .catch(async _ => {
+            const authStore = useAuthStore()
+            authStore.resetState()
+
+            await navigateTo({ path: '/auth/login' })
+        })
     // подключить pinia, взять куки, с ними отправить запрос на бек
 }
 </script>
