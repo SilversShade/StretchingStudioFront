@@ -10,7 +10,7 @@
                     <div class="navigation-list">
                         <div class="list-navbar"> <navbar-link to="/">Главная</navbar-link></div>
                         <div class="list-navbar"> <navbar-link to="/purchase-subscription">Купить абонемент</navbar-link></div>
-                        <div class="list-navbar"> <navbar-link to="/session-sign-up">Записаться на занятие</navbar-link></div>
+                        <div class="list-navbar"> <navbar-link to="/session-sign-up">Записаться на тренировку</navbar-link></div>
                     </div>
                 </div>
                 <div v-if="!authStore.isLoggedIn">

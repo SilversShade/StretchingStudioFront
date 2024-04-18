@@ -5,11 +5,10 @@
                 <div class="heading-2">Купить абонемент</div>
             </div>
             <div class="grid grid-cols-3 gap-5">
-                <div v-for="s in subscriptions">
-                    <SubscriptionCards :id="s.id" :sessions-num="s.sessionsNum" :price="s.price" />
+                <div v-for="s in subscriptions" :key="s.id">
+                    <SubscriptionCard :id="s.id" :sessions-num="s.sessionsNum" :price="s.price" />
                 </div>
             </div>
-
         </div>
     </div>
 </template>
