@@ -4,7 +4,6 @@ export const userAuthenticated = (accessToken: string | null | undefined) => {
 
 export default defineNuxtRouteMiddleware((to) => {
   const accessToken = useCookie('accessToken');
-  const authStore = useAuthStore()
 
   if (to.path === '/auth/register' && !userAuthenticated(accessToken.value))
     return

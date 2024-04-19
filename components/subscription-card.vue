@@ -34,10 +34,10 @@ const purchase = async () => {
         .catch(async _ => {
             const authStore = useAuthStore()
             authStore.resetState()
-
+            useCookie('accessToken').value = null
+            
             await navigateTo({ path: '/auth/login' })
         })
-    // подключить pinia, взять куки, с ними отправить запрос на бек
 }
 </script>
 

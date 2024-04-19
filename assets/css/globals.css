@@ -50,6 +50,12 @@ a {
   line-height: 48px;
 }
 
+.heading-3 {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 36px;
+}
+
 /*  */
 
 .container {

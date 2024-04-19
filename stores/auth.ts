@@ -11,7 +11,6 @@ export const useAuthStore = defineStore('auth', {
         resetState() {
             this.isLoggedIn = false
             this.username = ""
-            useCookie('accessToken').value = null
         }
     },
     persist: true

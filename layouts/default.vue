@@ -35,10 +35,10 @@ import { useAuthStore } from '~/stores/auth';
 
 const authStore = useAuthStore()
 
-const logout = () => {
-    authStore.isLoggedIn = false
-    authStore.username = ""
+const logout = async () => {
+    authStore.resetState()
     useCookie('accessToken').value = null
+    await navigateTo({ path: 'auth/login'})
 }
 </script>
 

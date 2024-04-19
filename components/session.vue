@@ -19,8 +19,26 @@ const props = defineProps({
     freeSlotsNum: Number
 })
 
-const signUp = () => {
+const emit = defineEmits<{onResponse: [message: string, btnText: string, isError: boolean]}>()
 
+const signUp = async () => {
+    const config = useRuntimeConfig()
+    
+    await $fetch(config.public.apiBase + '/api/v1/session-sign-up', {
+        method: 'post',
+        headers: {
+            "Authorization": "Bearer " + useCookie('accessToken').value
+        },
+        body: {
+            "sessionId": props.id
+        }
+        })
+        .then(res => {
+            emit('onResponse', 'Вы успешно записались на тренировку', 'В личный кабинет', false)
+        })
+        .catch(err => {
+            emit('onResponse', err.data.message, 'Закрыть', true)
+        })
 }
 </script>
 

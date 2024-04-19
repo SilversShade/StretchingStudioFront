@@ -10,8 +10,15 @@
                         :id="s.id" 
                         :session-type="s.sessionType.name" 
                         :starting-date="s.startingDate" 
-                        :free-slots-num="s.freeSlotsNum"/>
+                        :free-slots-num="s.freeSlotsNum"
+                        @on-response="responseReact"/>
                 </div>
+            </div>
+            <div v-if="popupShown">
+                <SessionSignupPopup @on-button-pressed="onButtonPressed" 
+                :button-text="buttonText" 
+                :popup-message="popupMessage"
+                :is-error="isError" />
             </div>
         </div>
     </div>
@@ -21,6 +28,24 @@
 definePageMeta({
     middleware: 'auth'
 })
+
+const popupShown = ref(false)
+const popupMessage = ref("")
+const buttonText = ref("")
+const isError = ref(false)
+
+const onButtonPressed = async (isSuccess: boolean) => {
+    popupShown.value = false
+    if (isSuccess)
+        await navigateTo({ path: '/account' })
+}
+
+const responseReact = (message: string, btnText: string, isErr: boolean) => {
+    popupMessage.value = message
+    buttonText.value = btnText
+    popupShown.value = true
+    isError.value = isErr
+}
 
 interface Session {
     id: string,
