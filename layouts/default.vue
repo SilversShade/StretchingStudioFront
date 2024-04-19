@@ -21,7 +21,7 @@
                     <button class="enter-button button-on-white" @click="logout"><nuxt-link to="/">Выход</nuxt-link></button>
                 </div>
             </div>
-
+            <div class="my-3 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-700"></div>
             <div>
                 <slot />
             </div>
