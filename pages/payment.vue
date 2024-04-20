@@ -13,14 +13,14 @@
                                 disabled />
                         </div>
                         <div class="input-wrapper">
-                            <input class="input-value" placeholder="0000 0000 0000 0000" />
+                            <input :v-model="cardNumber" class="input-value" placeholder="0000 0000 0000 0000" />
                         </div>
                         <div class="inputs-in-line">
                             <div class="input-wrapper">
-                                <input class="input-value" placeholder="12/12" />
+                                <input :v-model="expirationDate" class="input-value" placeholder="12/12" />
                             </div>
                             <div class="input-wrapper">
-                                <input class="input-value" placeholder="000" />
+                                <input :v-model="cvvCode" class="input-value" placeholder="000" />
                             </div>
                         </div>
                         <button class="cta-button">Оплатить</button>
@@ -34,6 +34,16 @@
 <script setup lang="ts">
 definePageMeta({
     middleware: 'auth'
+})
+
+const cardNumber = ref("")
+const expirationDate = ref("")
+const cvvCode = ref("")
+
+onBeforeUnmount(() => {
+    cardNumber.value = ""
+    expirationDate.value = ""
+    cvvCode.value = ""
 })
 
 const paymentStore = usePaymentStore()
