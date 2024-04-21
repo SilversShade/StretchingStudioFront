@@ -2,10 +2,10 @@
     <div class="popup">
         <div class="popup-inner">
             <div v-if="isError" class="font-bold">
-                <p class="pb-5 heading-2 text-center text-rose-600">Ошибка</p>
+                <p class="pb-5 heading-2 text-center text-rose-500">Ошибка</p>
             </div>
             <div v-else>
-                <p class="pb-5 heading-3 text-center text-green-600">Успешная запись</p>
+                <p class="pb-5 heading-3 text-center text-green-500">Успешная запись</p>
             </div>
             <span>{{ popupMessage }}</span>
             <div v-if="isError">

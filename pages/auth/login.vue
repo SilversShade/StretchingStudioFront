@@ -4,17 +4,19 @@
             <div class="content">
                 <div class="heading-1">Войти</div>
                 <div class="inputs">
-                    <form @submit.prevent="submitForm">
-                        <div class="input-wrapper">
-                            <input type="email" v-model="formData.email" id="email" class="input-value"
-                                placeholder="Email" />
+                    <Form @submit="submitForm" :validation-schema="schema">
+                        <div class="auth-input-wrapper">
+                            <Field name="email" type="email" v-model="formData.email" class="input-value mb-2"
+                                placeholder="Email"/>
+                            <ErrorMessage class="error-message text-rose-500" name="email"/>
                         </div>
-                        <div class="input-wrapper">
-                            <input type="password" v-model="formData.password" id="password" class="input-value"
-                                placeholder="Пароль" />
+                        <div class="auth-input-wrapper">
+                            <Field name="password" type="password" v-model="formData.password" class="input-value mb-2"
+                                placeholder="Пароль"/>
+                            <ErrorMessage class="error-message text-rose-500" name="password"/>
                         </div>
                         <button type="submit" class="cta-button">Войти</button>
-                    </form>
+                    </Form>
                     <p v-if="error" class="font-bold text-rose-500">{{ error }}</p>
                 </div>
             </div>
@@ -23,9 +25,25 @@
 </template>
 
 <script lang="ts">
+import * as yup from 'yup'
+
 const formData = ref({
     email: "",
     password: "",
+})
+
+const schema = yup.object({
+    email: yup
+        .string()
+        .required('Обязательное поле')
+        .email('Введите корректный email'),
+    password: yup
+        .string()
+        .required('Обязательное поле')
+        .min(6, 'Пароль должен быть длиной как минимум 6 символов')
+        .matches(/[a-z]/, 'Пароль должен содержать хотя бы одну строчную букву')
+        .matches(/[A-Z]/, 'Пароль должен содержать хотя бы одну заглавную букву')
+        .matches(/[0-9]/, 'Пароль должен содержать хотя бы одну цифру'),
 })
 
 interface LoginResponse {

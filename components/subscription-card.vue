@@ -6,8 +6,6 @@
             <div class="card-value">{{ props.price }} ₽</div>
         </div>
         <button class="card-button" @click="setPaymentData"><nuxt-link to="/payment">Купить</nuxt-link></button>
-        <!-- <button class="card-button" @click="purchase"><nuxt-link to="/payment" :params="{ id: id, price: price, sessionsNum: sessionsNum}">Купить</nuxt-link></button> -->
-        <!-- <button class="card-button" @click="purchase"><nuxt-link to="/account">Купить</nuxt-link></button> -->
     </div>
 </template>
 

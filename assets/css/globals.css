@@ -60,7 +60,6 @@ a {
   width: 1240px;
 }
 
-
 .input-wrapper {
   width: 100%;
   position: relative;
@@ -100,6 +99,16 @@ a {
   border-radius: 24px;
   padding: 24px 24px 24px;
   color: #000;
+}
+
+.auth-input-wrapper {
+  width: 500px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  padding-left: 15px;
 }
 
 /* navigation */

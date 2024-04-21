@@ -34,7 +34,7 @@ const signUp = async () => {
         }
         })
         .then(res => {
-            emit('onResponse', 'Вы успешно записались на тренировку', 'В личный кабинет', false)
+            emit('onResponse', 'Вы записались на тренировку', 'В личный кабинет', false)
         })
         .catch(err => {
             emit('onResponse', err.data.message, 'Закрыть', true)
