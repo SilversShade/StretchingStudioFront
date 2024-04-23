@@ -71,6 +71,7 @@ export default {
                 .then(async res => {
                     useCookie('accessToken', {
                         maxAge: res.expiresIn,
+                        sameSite: true,
                     }).value = res.accessToken
                     
                     const authStore = useAuthStore()
